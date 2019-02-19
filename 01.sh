@@ -6,7 +6,7 @@
 #	embedded system running a custom copyleft free/libre software on a quest for finding nothing by creating all possible values for a 256-bit of something one-by-one, which is a total of 115.792.089.237.316.195.423.570.985.008.687.907.853.269.984.665.640.564.039.457.584.007.913.129.639.936 things, and calculating their sha-256 cryptographic hashes to compare them to that of nothing for finding a match and thus finding nothing; or otherwise proves what nothing is not when hash of something does not match that of nothing, and displays the results on a command-line interface as well as all this process of a second-preimage attack on sha-256 hash of nothing as a brute-force cryptographic attack. 
 #	https://httpdot.net/peers/theQuestForFindingSomethingThatIsNothing
 #
-#	custom software is written as a bash script by bager akbay, along with the pseudocode, and released as a copyleft free/libre software under GNU GPLv3.  
+#	custom software is written as a bash script by bager akbay and orhan 'aib' kavrakoglu, along with the pseudocode, and released as a copyleft free/libre software under GNU GPLv3.
 #	all programs and utilities executed by bash script are also free/libre software.
 #	the embedded system powered by a gnu/linux operating system is also programmed by bager akbay.
 #	this work is commissioned by protocinema for the exhibition “blockchain is… / …for nothing” at aetopoulos, athens, february 2019
