@@ -40,13 +40,21 @@ sleep 6
 		for (( c=1; c<=$LINES-2; c++ ))
 		do
 
-			dd if=/dev/urandom of=something bs=1 count=32 status=none
+			if [[ ! -s "something" ]]; then
+				echo -en "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00" > "something"
+				somethingHex=$(xxd -p -c 80 something)
+			else
+				somethingHex=$(xxd -p -c 80 something)
+				somethingHex=$(printf "%64s" $(bc <<< "obase=16; ibase=16; $(tr '[a-z]' '[A-Z]' <<< $somethingHex) + 1") | tr ' ' 0)
+				xxd -r -p -c 80 <<< $somethingHex > something
+			fi
+
 			randomFileHash=$(jacksum -a SHA256 something | cut -d' ' -f1)
 
 
 			echo -en "creating something:"
 			sleep 2
-			echo -en "    $(xxd -p -c 80 something)"
+			echo -en "    $somethingHex"
 			sleep 0.1
 			echo -en "    hashing something:"
 			sleep 2
