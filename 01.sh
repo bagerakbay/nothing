@@ -18,7 +18,7 @@
 hashofNothing=$(jacksum -a SHA256 -q '' | cut -d' ' -f1)
 
 LINES=$(tput lines)
-FILE="foundNothing"
+FILE="somethingThatIsNothing"
 clear
 
 if [ -f $FILE ]
@@ -69,7 +69,7 @@ sleep 6
 
 			if [ "$hashofNothing" = "$randomFileHash" ]; then
 				echo "found a file that matches"
-				echo "$(cp something foundNothing)"
+				echo "$(cp something "$FILE")"
 				sleep 99999999
 			else
 				echo -en "    hashes don't match."
