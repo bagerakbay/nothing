@@ -58,23 +58,18 @@ sleep 6
 			sleep 0.1
 			echo -en "    /comparing hashes:"
 			sleep 0.1
-			echo -en "    hashes don't match." 
- 			sleep 1.5
-			echo -en " that thing is not nothing."
- 			sleep 2.5
-			echo " trying next thing"
- 			sleep 0.1
-
-	
-
-
 
 			if [ "$hashofNothing" = "$randomFileHash" ]; then
 				echo "found a file that matches"
 				echo "$(cp something foundNothing)"
 				sleep 99999999
 			else
-				:
+				echo -en "    hashes don't match."
+				sleep 1.5
+				echo -en " that thing is not nothing."
+				sleep 2.5
+				echo " trying next thing"
+				sleep 0.1
 			fi
 		done
 
