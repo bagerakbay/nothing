@@ -13,8 +13,6 @@
 #
 #	This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>
 
-
-
 hashofNothing=$(jacksum -a SHA256 -q '' | cut -d' ' -f1)
 
 LINES=$(tput lines)
@@ -42,14 +40,10 @@ sleep 6
 
 			if [[ ! -s "something" ]]; then
 				echo -en "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00" > "something"
-				somethingHex=$(xxd -p -c 80 something)
-			else
-				somethingHex=$(xxd -p -c 80 something)
-				somethingHex=$(printf "%64s" $(bc <<< "obase=16; ibase=16; $(tr '[a-z]' '[A-Z]' <<< $somethingHex) + 1") | tr ' ' 0)
-				xxd -r -p -c 80 <<< $somethingHex > something
 			fi
 
-			randomFileHash=$(jacksum -a SHA256 something | cut -d' ' -f1)
+			somethingHex=$(xxd -p -c 80 something)
+			somethingHash=$(jacksum -a SHA256 something | cut -d' ' -f1)
 
 
 			echo -en "creating something:"
@@ -58,7 +52,7 @@ sleep 6
 			sleep 0.1
 			echo -en "    hashing something:"
 			sleep 2
-			echo "    $randomFileHash"
+			echo "    $somethingHash"
 			sleep 0.1
 			echo -en "hash of nothing is:"
 			sleep 2
@@ -67,7 +61,7 @@ sleep 6
 			echo -en "    /comparing hashes:"
 			sleep 0.1
 
-			if [ "$hashofNothing" = "$randomFileHash" ]; then
+			if [ "$hashofNothing" = "$somethingHash" ]; then
 				echo "found a file that matches"
 				echo "$(cp something "$FILE")"
 				sleep 99999999
@@ -78,6 +72,9 @@ sleep 6
 				sleep 2.5
 				echo " trying next thing"
 				sleep 0.1
+
+				somethingHex=$(printf "%64s" $(bc <<< "obase=16; ibase=16; $(tr '[a-z]' '[A-Z]' <<< $somethingHex) + 1") | tr ' ' 0)
+				xxd -r -p -c 80 <<< $somethingHex > something
 			fi
 		done
 
