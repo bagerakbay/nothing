@@ -6,7 +6,7 @@
 #	embedded system running a custom copyleft free/libre software as a work of art on a quest for becoming an artist by duplicating and appropriating itself as a work of art by creating random data of its own size and displaying it for 15 seconds as a candidate for an artwork while calculating and comparing the hash of that random data to its own hash and it continues this process until it finds a match as a proof of its duplicate as an appropriated work of art as a proof-of-work by the artist.
 #	https://httpdot.net/peers/proof-of-work-of-art-istt
 #
-#	custom software is written as a bash script by bager akbay, along with the pseudocode, and released as a copyleft free/libre software under GNU GPLv3.  
+#	custom software is written as a bash script by bager akbay, along with the pseudocode, and released as a copyleft free/libre software under GNU GPLv3.
 #	all programs and utilities executed by bash script are also free/libre software.
 #	the embedded system powered by a gnu/linux operating system is also programmed by bager akbay.
 #	this work is commissioned by protocinema for the exhibition “blockchain is… / …for nothing” at aetopoulos, athens, february 2019
@@ -27,7 +27,7 @@ else
 
 	while :
 	do
-		$(dd if=/dev/urandom of=proof-of-work bs=1 count=$FILESIZE status=none) 
+		$(dd if=/dev/urandom of=proof-of-work bs=1 count=$FILESIZE status=none)
 		randomFileHash=$(jacksum -a SHA256 proof-of-work | cut -d' ' -f1)
 		clear
 		cat proof-of-work 1>/dev/tty 2>/dev/null

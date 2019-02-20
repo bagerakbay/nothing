@@ -1,15 +1,15 @@
-set hashOfNothing to the hash of nothing.
+This algorithm searches for something which is equal to nothing in a cryptograhpic way.
 
-until something which has the same of hash of nothing, do:
+Set hashOfNothing to the hash of nothing.
+Create something from zeros.
 
-		create something from zeros
-	
-		if somethings hash is equal to the hash of nothing:
-				create a flag
-				stop running 
-		else
-				increase something with 1
+UNTIL hash of something is the same with hash of nothing, do:
 
-end do:
+		set hashOfSomething to the hash of something.
+		increase something by one.
 
-alert that something has been found
+END UNTIL
+
+Alert that something has been found
+Create a flag so that we do not have to look for it anymore.
+Stop

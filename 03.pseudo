@@ -1,0 +1,14 @@
+This algorithm searches for something equal to itself in a cryptographic way which may include itself.
+
+set myHash to the hash of this algorithm.
+
+FOREVER
+
+  Create something which is the same size of this algorithm.
+  Set hashOfSomething to the hash of something.
+  Print hashOfSomething
+
+  IF hashOfSomething is equal to myHash
+    Wait FOREVER
+
+END FOREVER

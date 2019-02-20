@@ -1,0 +1,22 @@
+This algorithm controls if nothing has changed in five different cryptograhpic algorithms.
+
+Set MD5-hashOfNothing         to the hash of nothing with the MD5         algorithm.
+Set HAS-160-hashOfNothing     to the hash of nothing with the HAS-160     algorithm.
+Set Tiger-hashOfNothing       to the hash of nothing with the Tiger       algorithm.
+Set SHA-256-hashOfNothing     to the hash of nothing with the SHA-256     algorithm.
+Set RIPEMD-320-hashOfNothing  to the hash of nothing with the RIPEMD-320  algorithm.
+
+FOREVER
+
+  FOR every algorithm
+
+    Set newHash to the recalculation of the hash of nothing.
+
+    IF nothing has changed
+
+      Alert that nothing has changed.
+      Alert that nothing will happen.
+
+Wait until the current minute ends.
+
+END FOREVER
