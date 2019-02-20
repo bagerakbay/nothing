@@ -1,16 +1,15 @@
 This algorithm calculates hash of nothing and iterates the result to create the next hash.
 
 Set genesisBlockTimeStamp to the current time.
-Set counter to zero
+Set blockHeight to zero
 Set hashOftheBlock to the hash of nothing.
 
 print genesisBlockTimeStamp
 
 FOREVER
 
-		set hashOftheBlock to the hash of hashOftheBlock.
-		print hashOftheBlock
-    raise counter by one.
-    print counter
+	set hashOftheBlock to the hash of hashOftheBlock.
+	print hashOftheBlock
+	raise blockHeight by one. 
 
 END FOREVER
