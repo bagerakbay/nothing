@@ -1,0 +1,15 @@
+set hashOfNothing to the hash of nothing.
+
+until something which has the same of hash of nothing, do:
+
+		create something from zeros
+	
+		if somethings hash is equal to the hash of nothing:
+				create a flag
+				stop running 
+		else
+				increase something with 1
+
+end do:
+
+alert that something has been found
