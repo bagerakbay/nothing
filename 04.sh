@@ -6,7 +6,7 @@
 #	embedded system running a custom copyleft free/libre software on a quest for creating a blockchain for nothing which originates from nothing and continuously building blocks, each of which consisting of nothing but the sha-256 cryptographic hash of the previous block, and displays all blocks created with no proof-of-work on a command-line interface one after another by keeping the record of nothing but the last block..
 #	https://httpdot.net/peers/aBlockchainForNothingg
 #
-#	custom software is written as a bash script by bager akbay, along with the pseudocode, and released as a copyleft free/libre software under GNU GPLv3.  
+#	custom software is written as a bash script by bager akbay, along with the pseudocode, and released as a copyleft free/libre software under GNU GPLv3.
 #	all programs and utilities executed by bash script are also free/libre software.
 #	the embedded system powered by a gnu/linux operating system is also programmed by bager akbay.
 #	this work is commissioned by protocinema for the exhibition “blockchain is… / …for nothing” at aetopoulos, athens, february 2019
@@ -17,172 +17,64 @@
 
 
 
-
-
-
-
-#sadece ilk acilista ilk olarak echo "" ile nothing yaratacak, sonra bunu nhash'ni alarak baslayacak
-
 printf "\033c"
 
-HashOfTheBlock=$(jacksum -a SHA256 -E hex -q '' | cut -d' ' -f1)
-#timeStamp=$( date '+%Y-%m-%d %H:%M:%S' )
 
-FILE="genesisBlockTimeStamp"
-if [[ -s $FILE ]]
+
+if [[ -s "genesisBlockTimeStamp.log" ]] && [[ -s "blockHeight.log" ]] && [[ -s "LastCreatedBlock.log" ]]
 then
-	timeStamp="$(cat $FILE)"
-sleep 1
+	timeStamp="$(cat genesisBlockTimeStamp.log)"
+	HashOfTheBlock="$(cat LastCreatedBlock.log)"
+	blockHeight="$(cat blockHeight.log)"
+
+	sleep 1
 	echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
-sleep 4
+	sleep 4
 	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
-sleep 8	
-echo "genesis block of a blockchain for nothing was created on $timeStamp with no proof-of-work"
-sleep 5	
-#echo "................. blocks are created so far."
+	sleep 8
+	echo "genesis block of a blockchain for nothing was created on $timeStamp with no proof-of-work"
+	sleep 5
+	echo "$blockHeight blocks are created so far."
+  sleep 2
+
+
+	echo "last created block of a blockchain for nothing is"
+	echo "$HashOfTheBlock"
+	sleep 4
+	echo "a blockchain for nothing is now creating new blocks based on that block"
+	echo ""
+	sleep 4
+
 sleep 3
+
 else
-#	echo "first run"
+	$( rm *.log >/dev/null 2>&1)
+	echo "a blockchain for nothing has not been created yet or broken. a blockchain for nothing will start creating blocks again, from nothing."
+	sleep 8
+	printf "\033c"
+	echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
+	sleep 4
+	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
+	sleep 8
+	echo "a blockchain for nothing is now creating a blockchain originating from nothing, with no proof of work..."
+	echo ""
+	HashOfTheBlock=""
+  echo "$HashOfTheBlock" > LastCreatedBlock.log
 	timeStamp=$( date '+%Y-%m-%d %H:%M:%S' )
-	echo $timeStamp > genesisBlockTimeStamp
-sleep 2	
+  echo $timeStamp > genesisBlockTimeStamp.log
+	blockHeight=0
 fi
+sleep 2
 
-
-
-sleep 2	
-FILE="WhereIsTheLastBlock"
-if [[ -s $FILE ]]
-then
-	value=`cat WhereIsTheLastBlock`
-	FILE="$value"
-
-	if [[ -s $FILE ]]
-	then
-		HashOfTheBlock="$(cat $FILE)"
-
-		echo "last created block of a blockchain for nothing is"
-		echo "$HashOfTheBlock"
-sleep 4
-		echo "a blockchain for nothing is now creating new blocks based on that block" 
-		echo "" 
-		sleep 4
-	else
-#		echo "$FILE is broken."
-		if [[ $FILE == "LastCreatedBlock" ]]
-		then
-			FILE="LastCreatedBlock_BUP"
-		else
-			FILE="LastCreatedBlock"
-		fi
-	
-		if [[ -s $FILE ]]
-		then
-echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
-sleep 4
-	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
-sleep 8	
-echo "genesis block of a blockchain for nothing was created on $timeStamp with no proof-of-work"
-sleep 5	
-#echo "................. blocks are created so far."
-sleep 3
-			echo "last created block of a blockchain for nothing is"
-			HashOfTheBlock="$(cat $FILE)"
-			echo "$HashOfTheBlock"
-sleep 4	
-			echo "a blockchain for nothing is now creating new blocks based on that block" 
-			echo "" 
-			sleep 4
-
-		else
-echo "a blockchain for nothing is broken. a blockchain for nothing will start creating blocks again, from nothing."
-sleep 8	
-	printf "\033c"	
-echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
-sleep 4
-	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
-sleep 8	
-			echo "a blockchain for nothing is now creating a blockchain originating from nothing, with no proof of work..."
-echo "" 
-			timeStamp=$( date '+%Y-%m-%d %H:%M:%S' )
-			echo $timeStamp > genesisBlockTimeStamp	
-sleep 4			
-		fi
-	fi
-
-else
-#	echo "WhereIsTheLastBlock is broken"
-	FILE="LastCreatedBlock"
-	if [[ -s $FILE ]]
-	then
-#			echo "last bock is stored in file $FILE"
-echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
-sleep 4
-	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
-sleep 8	
-echo "genesis block of a blockchain for nothing was created on $timeStamp with no proof-of-work"
-sleep 5	
-#echo "................. blocks are created so far."
-sleep 3
-			echo "last created block of a blockchain for nothing is"
-			HashOfTheBlock="$(cat $FILE)"
-			echo "$HashOfTheBlock"
-sleep 4	
-			echo "a blockchain for nothing is now creating new blocks based on that block" 
-			echo "" 
-			sleep 4
-			
-	else
-
-#		echo "$FILE does not exist."
-#		echo "looking for a backup of the last created block"
-		FILE="LastCreatedBlock_BUP"
-		if [[ -s $FILE ]]
-		then
-#			echo "last block is stored in file $FILE"
-#			HashOfTheBlock="$(cat $FILE)"
-#			echo "last block is"
-echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
-sleep 4
-	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
-sleep 8	
-echo "genesis block of a blockchain for nothing was created on $timeStamp with no proof-of-work"
-sleep 5	
-#echo "................. blocks are created so far."
-sleep 3
-			echo "last created block of a blockchain for nothing is"
-			HashOfTheBlock="$(cat $FILE)"
-			echo "$HashOfTheBlock"
-sleep 4	
-			echo "a blockchain for nothing is now creating new blocks based on that block" 
-			echo "" 
-			sleep 4
-		else
-echo "a blockchain for nothing is broken. a blockchain for nothing will start creating blocks again, from nothing."
-sleep 8	
-	printf "\033c"	
-echo "\"a blockchain for nothing\" by peers at httpdot.net, 2019, gnu gplv3"
-sleep 4
-	echo "a blockchain for nothing originates from nothing and all blocks in a blockchain for nothing consists of nothing but sha-256 hash of the previous block."
-sleep 8	
-			echo "a blockchain for nothing is now creating a blockchain originating from nothing, with no proof of work..."
-echo "" 
-			timeStamp=$( date '+%Y-%m-%d %H:%M:%S' )
-			echo $timeStamp > genesisBlockTimeStamp
-sleep 4	
-		fi
-	fi
-fi
 
 while :
 do
-	echo -e -n "\e[40;90;0m$HashOfTheBlock" # yanyana görmek için
-	#echo -e "\e[40;90;0m$HashOfTheBlock" #satır satır görmek için
-	HashOfTheBlock=$(jacksum -a SHA-256 -q 'hex:'$HashOfTheBlock | cut -d' ' -f1)
-	echo "$HashOfTheBlock" > LastCreatedBlock
-	echo "LastCreatedBlock" > WhereIsTheLastBlock
-	echo "$HashOfTheBlock" > LastCreatedBlock_BUP
-	echo "LastCreatedBlock_BUP" > WhereIsTheLastBlock	
+	blockHeight=$((blockHeight+1))
+  echo -e -n "\e[40;90;0m$HashOfTheBlock" # yanyana görmek için
+  #echo -e "\e[40;90;0m$HashOfTheBlock" #satır satır görmek için
+  HashOfTheBlock=$(jacksum -a SHA-256 -q 'hex:'$HashOfTheBlock | cut -d' ' -f1)
+	echo "$HashOfTheBlock" > LastCreatedBlock.log
+	echo "$blockHeight" > blockHeight.log
 done
 
 
